@@ -1,0 +1,22 @@
+class Solution {
+public:
+
+    void dfs(int sr,int sc, int inicolor, int color, vector<vector<int>>& image){
+
+        if(sr<0 || sc<0 || sr>=image.size() || sc>=image[0].size() || image[sr][sc]!=inicolor)return;
+
+        image[sr][sc]=color;
+
+        dfs(sr-1,sc,inicolor,color,image);
+        dfs(sr+1,sc,inicolor,color,image);
+        dfs(sr,sc-1,inicolor,color,image);
+        dfs(sr,sc+1,inicolor,color,image);
+    }
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        int inicolor=image[sr][sc];
+        if(inicolor!=color){
+            dfs(sr,sc,inicolor,color,image);
+        }
+        return image;
+    }
+};
